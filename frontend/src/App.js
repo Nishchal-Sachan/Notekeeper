@@ -36,8 +36,8 @@ const App = () => {
         try {
             if (note.id) {
                 // Update existing note
-                const { id, ...noteData } = note; 
-                await axios.put(`http://localhost:5000/notes/${id}`, noteData);
+                const { id, ...noteData } = note;
+                await axios.put(`https://notekeeper-uepp.onrender.com:5000/notes/${id}`, noteData);
                 toast.success('Note updated successfully!');
             } else {
                 // Create new note
