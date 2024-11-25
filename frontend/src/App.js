@@ -17,7 +17,7 @@ const App = () => {
     // Fetch notes from the backend
     const fetchNotes = async (currentPage) => {
         try {
-            const response = await axios.get(`http://localhost:5000/notes`, {
+            const response = await axios.get(`https://notekeeper-uepp.onrender.com/notes`, {
                 params: { page: currentPage, limit: NOTES_PER_PAGE },
             });
             setNotes(response.data.notes);
@@ -37,12 +37,12 @@ const App = () => {
             if (note.id) {
                 // Update existing note
                 const { id, ...noteData } = note;
-                await axios.put(`https://notekeeper-uepp.onrender.com:5000/notes/${id}`, noteData);
+                await axios.put(`https://notekeeper-uepp.onrender.com/notes/${id}`, noteData);
                 toast.success('Note updated successfully!');
             } else {
                 // Create new note
                 const { id, _id, ...noteData } = note;
-                await axios.post('http://localhost:5000/notes', noteData);
+                await axios.post('https://notekeeper-uepp.onrender.com/notes', noteData);
                 toast.success('Note created successfully!');
             }
             fetchNotes(page); // Refresh notes
@@ -54,7 +54,7 @@ const App = () => {
 
     const handleDeleteNote = async (noteId) => {
         try {
-            await axios.delete(`http://localhost:5000/notes/${noteId}`);
+            await axios.delete(`https://notekeeper-uepp.onrender.com/notes/${noteId}`);
             toast.success('Note deleted successfully!');
             fetchNotes(page); // Refresh the notes
         } catch (error) {
